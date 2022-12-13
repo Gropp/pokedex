@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <!-- carrega os estilos e links antes de carregar a pagina -->
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Meu primeiro site</h1>
+    <p>Meu primeiro site esta usando html e css!</p>
+    <button id="btnTeste" type="button">Teste</button>
+
+    <!-- sempre coloca o script no final, assim o site carrega e depois carrega as automações -->
+    <script>
+        const btnTeste = document.getElementById("btnTeste")
+        btnTeste.addEventListener("click", function() {
+            console.log("cliclou no botão!")
+        })
+    </script>
+</body>
+</html>
