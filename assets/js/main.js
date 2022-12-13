@@ -10,7 +10,7 @@ function convertePokemonToLi(pokemon) {
     // Nao pode deixar o return sozinho na linha, da erro de undefined!!!
     return `
         <li class="pokemon">
-            <span class="number">${pokemon.order}</span>
+            <span class="number">${pokemon.id}</span>
             <span class="name">${pokemon.name}</span>
             <div class="detail">
                 <ol class="types">

@@ -10,7 +10,7 @@ pokeApi.getPokemonDetail = (pokemon) => {
 }
 
 //offset e limit sao usados na paginacao
-pokeApi.getPokemons = (offset = 0, limit = 10) => {
+pokeApi.getPokemons = (offset = 0, limit = 36) => {
     // grava a url ja com a query string
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
     //o fetch retorna uma promisse - pois esta buscando algo da rede, e o tempo de resposta é indeterminado/imprevisivel
