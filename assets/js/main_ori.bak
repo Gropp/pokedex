@@ -1,0 +1,63 @@
+// constantes para paginacao e para guardar a URL da API
+const offset = 0
+const limit = 10
+// grava a url ja com a query string
+const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
+//cria uma funcao que retorna o html da lista com as informacoes do fetch
+function convertePokemonToLi(pokemon) {
+    //USA CRASE
+    //debugger
+    // Nao pode deixar o return sozinho na linha, da erro de undefined!!!
+    return `
+        <li class="pokemon">
+            <span class="number">#001</span>
+            <span class="name">${pokemon.name}</span>
+            <div class="detail">
+                <ol class="types">
+                    <li class="type">grass</li>
+                    <li class="type">poison</li>
+                </ol>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="${pokemon.name}">
+            </div>
+        </li>
+    `
+}
+
+// colocamos em uma constante o alvo onde queremos colocar os cards dos pokemosn
+const pokemonLi = document.getElementById('pokemonList')
+
+//o fetch retorna uma promisse - pois esta buscando algo da rede, e o tempo de resposta é indeterminado/imprevisivel
+//o fetch usa sempre o metodo GET
+//o metodo them processa a resposta - executa uma funcao
+//o sistema continua a executar o programa e quando o fetch obter a resposta o sistema executa a funçao apontada pelo then - essa funçao é assincrona
+fetch(url)
+    //sucesso
+    //é possivel encadear varios then, sendo que o proximo sempre recebe a resposta do anterior atraves do return
+    //assim evitamos fazer recursividade de funcoes
+    //podemos tambem usar funcoes arrow ao inves de declarativas
+    //.then(function(response){
+    //converte o corpo da resposta em JSON
+    //      return response.json()
+    //})
+
+    //arrow fuction bem simplificada
+    .then((response) => response.json())
+    //.then(function(jsonBody){
+    //o proximo then converte a resposta para um json e já é possivel manipular as informacoes para o html
+    //vamos criar um then que ja traga somente o campo RESULTS do BODY DO GET
+    //desconstruindo o objeto de resposta
+    .then((jsonBody) => jsonBody.results)
+    //como tem mais de uma acao essa funcao, é preciso colocar {}
+    .then((pokemonList) => {
+        //debugger
+        console.log(pokemonList)
+        for (let i=0; i < pokemonList.length; i++){
+            const pokemon = pokemonList[i];
+            // adiciona mais
+            pokemonLi.innerHTML += convertePokemonToLi(pokemon)
+        }
+    })
+    //fracasso
+    .catch((error) => console.log(error))
+    //alguma acao idenpedente do sucesso ou fracasso da requisicao (opcional)
+    .finally(() => console.log('Requisição concluida!'))
