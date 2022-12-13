@@ -24,15 +24,30 @@ const pokemonLi = document.getElementById('pokemonList')
 //chamamos a funcao que faz a conexao com a API e tratamos com um .then novamente o formato dessa lista
 //no then poe por default uma lista vazia, para em caso de nao vir nada, a lista vazia é recebida e nao da erro
 pokeApi.getPokemons().then((pokemonList = []) => {
-    // como as arrow functions usam referencias, podemos trocar todas as linha abaixo por:
-    // pega a lista de pokemons, mapeia, junta e joga no html concatenando:
-    pokemonLi.innerHTML += pokemonList.map(convertePokemonToLi).join('')
+
     // o map retorna value, index, array
-    // o map substitui o for
-    // arrow function usa somente uma linha
-    //const newList = pokemonList.map((pokemon) => convertePokemonToLi(pokemon))
+    // o map substitui o fot
+    const newList = pokemonList.map((pokemon) => {
+        return convertePokemonToLi(pokemon)
+    })
+    
     // O join junta todos os elentos da lista
-    //const newHtml = newList.join('')
-    //pokemonLi.innerHTML += newHtml
+    const newHtml = newList.join(' ')
+    pokemonLi.innerHTML += newHtml
+
+
+    //debugger
+    //cria um array
+    // const listaItens = []
+    // for (let i=0; i < pokemonList.length; i++){
+    //     const pokemon = pokemonList[i];
+    //     faz um apend dos pokemos e o HTML na lista (array)
+    //     converte o objeto em um array com os codigos pronto
+    //     listaItens.push(convertePokemonToLi(pokemon))
+    //     adiciona mais
+    //     adicionar a lista com concatenação do HTML não é uma boa prática
+    //     pokemonLi.innerHTML += convertePokemonToLi(pokemon)
+    // }
+    // console.log(listaItens)
 })
   

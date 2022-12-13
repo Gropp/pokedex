@@ -2,7 +2,7 @@
 // função que faz o consumo da API
 
 const pokeApi = {}
-
+//offset e limit sao usados na paginacao
 pokeApi.getPokemons = (offset = 0, limit = 10) => {
     // grava a url ja com a query string
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
@@ -13,4 +13,5 @@ pokeApi.getPokemons = (offset = 0, limit = 10) => {
         .then((jsonBody) => jsonBody.results)
         //fracasso
         .catch((error) => console.log(error))
+        .finally(() => console.log('Requisição concluida!'))
 }
