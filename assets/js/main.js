@@ -19,14 +19,15 @@ function convertePokemonToLi(pokemon) {
 }
 
 // colocamos em uma constante o alvo onde queremos colocar os cards dos pokemosn
-const pokemonLi = document.getElementById('pokemonList')
+const LocalInsercaoHtml = document.getElementById('pokemonList')
 
 //chamamos a funcao que faz a conexao com a API e tratamos com um .then novamente o formato dessa lista
 //no then poe por default uma lista vazia, para em caso de nao vir nada, a lista vazia é recebida e nao da erro
 pokeApi.getPokemons().then((pokemonList = []) => {
     // como as arrow functions usam referencias, podemos trocar todas as linha abaixo por:
     // pega a lista de pokemons, mapeia, junta e joga no html concatenando:
-    pokemonLi.innerHTML += pokemonList.map(convertePokemonToLi).join('')
+    const newHtml = pokemonList.map(convertePokemonToLi).join('')
+    LocalInsercaoHtml.innerHTML = newHtml
     // o map retorna value, index, array
     // o map substitui o for
     // arrow function usa somente uma linha
