@@ -4,7 +4,7 @@ const LocalInsercaoHtml = document.getElementById('pokemonList')
 const loadMoreButtons = document.getElementById('loadMoreButton')
 
 //declaracao dos controles de paginacao
-const maxRecords = 100
+const maxRecords = 1154
 const limit = 12;
 let offset = 0;
 
@@ -40,5 +40,16 @@ loadMorePokemons(offset, limit)
 loadMoreButtons.addEventListener('click', () => {
     // incrementa o offset com o valor do intervalo do limite
     offset += limit
-    loadMorePokemons(offset, limit)
+    //calcula a qtd de registros da proxima pagina
+    const qtdRecordNextPage = offset + limit
+    //testa se o limite foi atingido
+    if (qtdRecordNextPage >= maxRecords) {
+        const newLimit = maxRecords - offset
+        loadMorePokemons(offset, newLimit)
+        //quando atinge o limite remove o botao
+        loadMoreButtons.parentElement.removeChild(loadMoreButtons)
+    } else {
+        loadMorePokemons(offset, limit)
+    }
+    
 })
