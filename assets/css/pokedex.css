@@ -1,6 +1,17 @@
+.totalPokemon {
+    font-size: small;
+    padding: 1rem;
+}
+
+.totalPokemon span {
+    font-weight: 500;
+    color: #a309c2;
+}
+
 .pokemons {
     display: grid;
     grid-template-columns: 1fr;
+    text-transform: capitalize;
     list-style: none;
     padding: 0;
     margin: 0;

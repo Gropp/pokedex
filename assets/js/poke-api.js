@@ -4,12 +4,12 @@
 
 const pokeApi = {}
 
-//usando a classe pokemon que criamos
+//preenchendo a classe pokemon que criamos
 function convertPokeApiDetailToPokemon(pokeDetail) {
     //instancia a classe
     const pokemon = new Pokemon()
     
-    pokemon.number = pokeDetail.order
+    pokemon.number = pokeDetail.id
     pokemon.name = pokeDetail.name
 
     const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
@@ -25,6 +25,15 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     return pokemon
 }
 
+pokeApi.getTotalPokemon = () => {
+    const urlSimples = 'https://pokeapi.co/api/v2/pokemon'
+    return fetch(urlSimples)
+        .then((response) => response.json())
+        .then((jsonCount) => jsonCount.count)
+        .catch((error) => console.log(error))
+        .finally(() => console.log('Requisição do total OK!'))
+
+}
 
 //metodo para buscar os detalhes dos pokemons Ja retorna em JSON
 pokeApi.getPokemonDetail = (pokemon) => {
@@ -34,7 +43,7 @@ pokeApi.getPokemonDetail = (pokemon) => {
 }
 
 //offset e limit sao usados na paginacao
-pokeApi.getPokemons = (offset = 0, limit = 12) => {
+pokeApi.getPokemons = (offset, limit) => {
     // grava a url ja com a query string
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
     //o fetch retorna uma promisse - pois esta buscando algo da rede, e o tempo de resposta é indeterminado/imprevisivel
@@ -57,3 +66,19 @@ pokeApi.getPokemons = (offset = 0, limit = 12) => {
         .catch((error) => console.log(error))
         .finally(() => console.log('Requisição concluida!'))
 }
+
+//chamamos a funcao que faz a conexao com a API e tratamos com um .then novamente o formato dessa lista
+//no then poe por default uma lista vazia, para em caso de nao vir nada, a lista vazia é recebida e nao da erro
+// pokeApi.getPokemons().then((pokemonList = []) => {
+    // como as arrow functions usam referencias, podemos trocar todas as linha abaixo por:
+    // pega a lista de pokemons, mapeia, junta e joga no html concatenando:
+    // const newHtml = pokemonList.map(convertePokemonToLi).join('')
+    // LocalInsercaoHtml.innerHTML = newHtml
+    // o map retorna value, index, array
+    // o map substitui o for
+    // arrow function usa somente uma linha
+    //const newList = pokemonList.map((pokemon) => convertePokemonToLi(pokemon))
+    // O join junta todos os elentos da lista
+    //const newHtml = newList.join('')
+    //pokemonLi.innerHTML += newHtml
+//})

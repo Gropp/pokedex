@@ -1,0 +1,48 @@
+// colocamos em uma constante os alvos onde queremos colocar os cards dos pokemons e o button
+const LocalInsercaoHtml = document.getElementById('pokemonList')
+const loadMoreButtons = document.getElementById('loadMoreButton')
+
+//declaracao dos controles de paginacao
+const limit = 10
+let offset = 0
+//lista de tipos
+//function convertPokemonTypesToLi(pokemonTypes) {
+//    return pokemonTypes.map((typeSlot) => `<li class="type">${typeSlot.type.name}</li>`)
+//}
+//cria uma funcao que retorna o html da lista com as informacoes do fetch
+function convertePokemonToLi(pokemon) {
+    //USA CRASE
+    //debugger
+    // Nao pode deixar o return sozinho na linha, da erro de undefined!!!
+    return `
+        <li class="pokemon ${pokemon.type}">
+            <span class="number">${pokemon.number}</span>
+            <span class="name">${pokemon.name}</span>
+            <div class="detail">
+                <ol class="types">
+                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
+                </ol>
+                <img src="${pokemon.photo}"
+                     alt="${pokemon.name}"/>
+            </div>
+        </li>
+    `
+}
+
+//paginacao - na verdade vai fazer um append - vai aumentar o numero de elementos
+function loadMorePokemons(offset, limit) {
+    
+
+
+    pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+        const newHtml = pokemons.map(convertePokemonToLi).join('')
+        LocalInsercaoHtml.innerHTML += newHtml
+    })
+}
+
+//adiciona um evento ao botao
+loadMoreButtons.addEventListener('click', () => {
+    loadMorePokemons()
+})
+
+  

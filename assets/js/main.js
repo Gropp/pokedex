@@ -1,43 +1,44 @@
-//lista de tipos
-//function convertPokemonTypesToLi(pokemonTypes) {
-//    return pokemonTypes.map((typeSlot) => `<li class="type">${typeSlot.type.name}</li>`)
-//}
+// colocamos em uma constante os alvos onde queremos colocar os cards dos pokemons e o button
+const totalPokemonHtml = document.getElementById('totalPokemon')
+const LocalInsercaoHtml = document.getElementById('pokemonList')
+const loadMoreButtons = document.getElementById('loadMoreButton')
 
-//cria uma funcao que retorna o html da lista com as informacoes do fetch
-function convertePokemonToLi(pokemon) {
-    //USA CRASE
-    //debugger
-    // Nao pode deixar o return sozinho na linha, da erro de undefined!!!
-    return `
-        <li class="pokemon ${pokemon.type}">
-            <span class="number">${pokemon.number}</span>
-            <span class="name">${pokemon.name}</span>
-            <div class="detail">
-                <ol class="types">
-                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
-                </ol>
-                <img src="${pokemon.photo}" alt="${pokemon.name}">
-            </div>
-        </li>
-    `
+//declaracao dos controles de paginacao
+const maxRecords = 100
+const limit = 12;
+let offset = 0;
+
+
+//paginacao - na verdade vai fazer um append - vai aumentar o numero de elementos
+function loadMorePokemons(offset, limit) {
+    pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
+        const newHtml = pokemons.map((pokemon) => `
+            <li class="pokemon ${pokemon.type}">
+                <span class="number">0${pokemon.number}</span>
+                <span class="name">${pokemon.name}</span>
+                <div class="detail">
+                    <ol class="types">
+                        ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
+                    </ol>
+                    <img src="${pokemon.photo}"
+                        alt="${pokemon.name}"/>
+                </div>
+            </li>
+        `).join('')
+        LocalInsercaoHtml.innerHTML += newHtml
+    })
 }
 
-// colocamos em uma constante o alvo onde queremos colocar os cards dos pokemosn
-const LocalInsercaoHtml = document.getElementById('pokemonList')
-
-//chamamos a funcao que faz a conexao com a API e tratamos com um .then novamente o formato dessa lista
-//no then poe por default uma lista vazia, para em caso de nao vir nada, a lista vazia é recebida e nao da erro
-pokeApi.getPokemons().then((pokemonList = []) => {
-    // como as arrow functions usam referencias, podemos trocar todas as linha abaixo por:
-    // pega a lista de pokemons, mapeia, junta e joga no html concatenando:
-    const newHtml = pokemonList.map(convertePokemonToLi).join('')
-    LocalInsercaoHtml.innerHTML = newHtml
-    // o map retorna value, index, array
-    // o map substitui o for
-    // arrow function usa somente uma linha
-    //const newList = pokemonList.map((pokemon) => convertePokemonToLi(pokemon))
-    // O join junta todos os elentos da lista
-    //const newHtml = newList.join('')
-    //pokemonLi.innerHTML += newHtml
+pokeApi.getTotalPokemon().then((totalPokemon) => {
+    const totalHtml = `<p class="totalPokemon">Número total de Pokemons é de: <span>${totalPokemon}</span></p>`
+    totalPokemonHtml.innerHTML = totalHtml
 })
-  
+
+loadMorePokemons(offset, limit)
+
+//adiciona um evento ao botao
+loadMoreButtons.addEventListener('click', () => {
+    // incrementa o offset com o valor do intervalo do limite
+    offset += limit
+    loadMorePokemons(offset, limit)
+})

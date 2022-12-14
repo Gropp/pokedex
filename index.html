@@ -14,6 +14,7 @@
 <body>
     <section class="content">
         <h1>Pokedex</h1>
+        <div id="totalPokemon"></div>
         <!-- essa estrutura de OL tem que ser repetida para cada um dos dados vindos da API -->
         <ol id="pokemonList" class="pokemons">
             <!-- aqui o JS vai colocar a lista de pokemons vindos da API -->
@@ -21,7 +22,7 @@
 
         <div class="pagination">
             <!-- botao para paginacao -->
-            <button id="loadMore" class="btn" type="button">
+            <button id="loadMoreButton" class="btn" type="button">
                 Load More
             </button>
         </div>
