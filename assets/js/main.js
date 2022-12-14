@@ -30,7 +30,7 @@ function loadMorePokemons(offset, limit) {
 }
 
 pokeApi.getTotalPokemon().then((totalPokemon) => {
-    const totalHtml = `<p class="totalPokemon">Número total de Pokemons é de: <span>${totalPokemon}</span></p>`
+    const totalHtml = `<p class="totalPokemon">Número total de Pokemons: <span>${totalPokemon}</span></p>`
     totalPokemonHtml.innerHTML = totalHtml
 })
 

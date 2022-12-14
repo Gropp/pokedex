@@ -1,6 +1,7 @@
 .totalPokemon {
     font-size: small;
     padding: 1rem;
+    text-align: right;
 }
 
 .totalPokemon span {
