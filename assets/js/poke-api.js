@@ -4,13 +4,37 @@
 
 const pokeApi = {}
 
+//usando a classe pokemon que criamos
+function convertPokeApiDetailToPokemon(pokeDetail) {
+    //instancia a classe
+    const pokemon = new Pokemon()
+    
+    pokemon.number = pokeDetail.order
+    pokemon.name = pokeDetail.name
+
+    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
+    //desconstruindo o objeto types
+    //pega somente o primeiro tipo, que é o ambiente do pokemon grass/fire/water ...
+    const [type] = types
+
+    pokemon.types = types
+    pokemon.type = type
+
+    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
+
+    return pokemon
+}
+
+
 //metodo para buscar os detalhes dos pokemons Ja retorna em JSON
 pokeApi.getPokemonDetail = (pokemon) => {
-    return fetch(pokemon.url).then((response) => response.json())
+    return fetch(pokemon.url)
+            .then((response) => response.json())
+            .then(convertPokeApiDetailToPokemon)
 }
 
 //offset e limit sao usados na paginacao
-pokeApi.getPokemons = (offset = 0, limit = 36) => {
+pokeApi.getPokemons = (offset = 0, limit = 12) => {
     // grava a url ja com a query string
     const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`
     //o fetch retorna uma promisse - pois esta buscando algo da rede, e o tempo de resposta é indeterminado/imprevisivel

@@ -1,7 +1,7 @@
 //lista de tipos
-function convertPokemonTypesToLi(pokemonTypes) {
-    return pokemonTypes.map((typeSlot) => `<li class="type">${typeSlot.type.name}</li>`)
-}
+//function convertPokemonTypesToLi(pokemonTypes) {
+//    return pokemonTypes.map((typeSlot) => `<li class="type">${typeSlot.type.name}</li>`)
+//}
 
 //cria uma funcao que retorna o html da lista com as informacoes do fetch
 function convertePokemonToLi(pokemon) {
@@ -9,14 +9,14 @@ function convertePokemonToLi(pokemon) {
     //debugger
     // Nao pode deixar o return sozinho na linha, da erro de undefined!!!
     return `
-        <li class="pokemon">
-            <span class="number">${pokemon.id}</span>
+        <li class="pokemon ${pokemon.type}">
+            <span class="number">${pokemon.number}</span>
             <span class="name">${pokemon.name}</span>
             <div class="detail">
                 <ol class="types">
-                    ${convertPokemonTypesToLi(pokemon.types).join('')}
+                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
-                <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+                <img src="${pokemon.photo}" alt="${pokemon.name}">
             </div>
         </li>
     `
