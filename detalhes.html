@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/pokedex.css">
+    <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+    <title>Detalhes Pokemon</title>
+</head>
+<body>
+    <section class="content">
+        <div class="pokemon">
+            <p>icone de seta</p>
+            <p>icone de coração</p>
+            <li class="detalhe">
+                <span class="number">pokemon.number</span>
+                <span class="name">pokemon.name</span>
+                <div class="detail">
+                    <ol class="types">
+                        <li class="type ${type}">type</li>
+                    </ol>
+                    
+                </div>
+                <img class="imgdetalhe" src="" alt="imagem do pokemon"/>
+            </li>
+        </div>
+    </section>
+    <script src="/assets/js/pokemon-model.js"></script>
+    <script src="/assets/js/poke-api.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
