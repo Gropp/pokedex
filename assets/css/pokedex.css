@@ -27,70 +27,87 @@
     margin: .5rem;
     padding: 1rem;
     border-radius: 1rem;
-    background-color: #afaaaffd;
+    background-color: #afaaaffd; opacity: 0.9;
     color: #FFF;
 }
 
 /* cores dos fundos do pokemon segundo os tipos */
 .normal{
-    background-color: #a6a877;
+    background-color: #a6a877; opacity: 0.9;
 } 
 .grass {
-    background-color: #77c850;
+    background-color: #77c850; opacity: 0.9;
 }
 .fire {
-    background-color: #ee7f30;
+    background-color: #ee7f30; opacity: 0.9;
 }
 .water {
-    background-color: #678fee;
+    background-color: #678fee; opacity: 0.9;
 }
 .electric {
-    background-color: #f7cf2e;
+    background-color: #f7cf2e; opacity: 0.9;
 }
 .ice {
-    background-color: #98d5d7;
+    background-color: #98d5d7; opacity: 0.9;
 }
 .ground {
-    background-color: #dfbf69;
+    background-color: #dfbf69; opacity: 0.9;
 }
 .flying {
-    background-color: #a98ff0;
+    background-color: #a98ff0; opacity: 0.9;
 }
 .poison {
-    background-color: #a040a0;
+    background-color: #a040a0; opacity: 0.9;
 }
 .fighting {
-    background-color: #bf3029;
+    background-color: #bf3029; opacity: 0.9;
 }
 .psychic {
-    background-color: #f65687;
+    background-color: #f65687; opacity: 0.9;
 }
 .dark {
-    background-color: #725847;
+    background-color: #725847; opacity: 0.9;
 }
 .rock {
-    background-color: #b8a137;
+    background-color: #b8a137; opacity: 0.9;
 }
 .bug {
-    background-color: #a8b720;
+    background-color: #a8b720; opacity: 0.9;
 }
 .ghost {
-    background-color: #6e5896;
+    background-color: #6e5896; opacity: 0.9;
 }
 .steel {
-    background-color: #b9b7cf;
+    background-color: #b9b7cf; opacity: 0.9;
 }
 .dragon {
-    background-color: #6f38f6;
+    background-color: #6f38f6; opacity: 0.9;
 }
 .fairy {
-    background-color: #f9aec7;
+    background-color: #f9aec7; opacity: 0.9;
 }
 
 .pokemon .link {
     text-decoration: none;
     cursor: alias;
 }
+
+.pokemon .icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.pokemon .detalhe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
 .pokemon .number {
     color: #000;
     opacity: 0.5;

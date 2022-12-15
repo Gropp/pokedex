@@ -13,21 +13,26 @@
 <body>
     <section class="content">
         <div class="pokemon">
-            <p>icone de seta</p>
-            <p>icone de coração</p>
-            <li class="detalhe">
-                <span class="number">pokemon.number</span>
-                <span class="name">pokemon.name</span>
-                <div class="detail">
-                    <ol class="types">
-                        <li class="type ${type}">type</li>
-                    </ol>
-                    
-                </div>
-                <img class="imgdetalhe" src="" alt="imagem do pokemon"/>
-            </li>
+            <ol>
+                 <li class="icons">
+                        <p><i class="fa-solid fa-arrow-left"></i></p>
+                        <p><i class="fa-regular fa-heart"></i></p>
+                </li>
+                <li class="detalhe">
+                    <span class="number">pokemon.number</span>
+                    <span class="name">pokemon.name</span>
+                    <div class="detail">
+                        <ol class="types">
+                            <li class="type ${type}">type</li>
+                        </ol> 
+                    </div>
+                    <img class="imgdetalhe" src="" alt="imagem do pokemon"/>
+                </li>
+            </ol>
         </div>
     </section>
+    <!-- link para a galeria de icones da fontawesome -->
+    <script src="https://kit.fontawesome.com/e3adcc10cd.js" crossorigin="anonymous"></script>
     <script src="/assets/js/pokemon-model.js"></script>
     <script src="/assets/js/poke-api.js"></script>
     <script src="/assets/js/main.js"></script>
